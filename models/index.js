@@ -11,7 +11,7 @@ User.hasMany(Vote, {
 });
 
 Comment.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'recipient_id'
 });
 
 User.hasMany(Comment, {
