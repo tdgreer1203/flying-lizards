@@ -3,8 +3,11 @@ const { User, Comment, Vote } = require('../../models');
 
 router.get('/', (req, res) => {
     User.findAll({
-        attributes: ['id', 'name', 'breed', 'age', 'username', 'profile', 'image_url']
-    }).then(dbUserData => res.json(dbUserData)).catch(err => {
+        attributes: { exclude: ['password']}
+    }).then(dbUserData => {
+        console.log(dbUserData);
+        res.json(dbUserData);
+    }).catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
