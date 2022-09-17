@@ -39,7 +39,7 @@ User.init({
         }
     },
     profile: {
-        type: DataTypes.TEXT(1000),
+        type: DataTypes.TEXT('medium'),
         allowNull: true
     },
     image_url: {
