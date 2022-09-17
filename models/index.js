@@ -6,16 +6,8 @@ Vote.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-User.hasMany(Vote, {
-    foreignKey: 'user_id'
-});
-
 Comment.belongsTo(User, {
-    foreignKey: 'user_id'
-});
-
-User.hasMany(Comment, {
-    foreignKey: 'user_id'
+    foreignKey: 'recipient_id'
 });
 
 module.exports = { User, Vote, Comment };
