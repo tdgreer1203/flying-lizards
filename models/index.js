@@ -6,10 +6,6 @@ User.hasMany(Comment, {
     foreignKey: 'recipient_id'
 });
 
-/*User.hasMany(Vote, {
-    foreignKey: 'user_id'
-});*/
-
 User.belongsToMany(User, {
     as: 'voter', 
     through: Vote,
@@ -23,10 +19,6 @@ User.belongsToMany(User, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
 });
-
-/*Vote.belongsTo(User, {
-    foreignKey: 'user_id'
-});*/
 
 Comment.belongsTo(User, {
     foreignKey: 'recipient_id'
