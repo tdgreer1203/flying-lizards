@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const { QueryTypes } = require('sequelize');
+const sequelize = require('../../config/connection');
 const { Comment, User } = require('../../models');
 
 router.get('/', (req, res) => {
@@ -10,26 +12,17 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
-    Comment.findAll({
-      where: {
-        recipient_id: req.params.id
-      },
-      order: [['created_at', 'DESC']],
-      include: [{
-        model: User,
-        attributes: ['id', 'username', 'image_url']
-      }]
-    }).then(dbCommentData => {
-      if(!dbCommentData) {
-        res.status(404).json({ message: 'No comments to show just yet.' });
-        return;
-      }
-      res.json(dbCommentData);
-    }).catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+router.get('/:id', async (req, res) => {
+  try {
+    const comment = await sequelize.query(`SELECT comment_text, username, image_url, created_at FROM comment LEFT JOIN user ON comment.author_id = user.id WHERE recipient_id = ? ORDER BY created_at DESC`, {
+      replacements: [req.params.id],
+      type: QueryTypes.SELECT
     });
+    res.json(comment);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router
