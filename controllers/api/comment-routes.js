@@ -25,4 +25,32 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.post('/', (req, res) => {
+  Comment.create({
+    comment_text: req.body.comment_text,
+    author_id: req.body.author_id,
+    recipient_id: req.body.recipient_id
+  }).then(dbCommentData => res.json(dbCommentData)).catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  Comment.destroy({
+      where: {
+          id: req.params.id
+      }
+  }).then(dbCommentData => {
+      if(!dbCommentData) {
+          res.status(404).json({ message: 'No comment found wiht this id' });
+          return;
+      }
+      res.json(dbCommentData);
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+});
+
 module.exports = router
