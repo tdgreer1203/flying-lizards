@@ -6,17 +6,20 @@ User.hasMany(Comment, {
     foreignKey: 'recipient_id'
 });
 
-User.belongsTo(Comment, {
-    foreignKey: 'user_id'
+/*User.belongsTo(Comment, {
+    foreignKey: 'user_id',
+    as: 'receiver'
+});*/
+
+Comment.hasOne(User, {
+    foreignKey: 'user_id',
+    as: 'author'
 });
 
-Comment.hasMany(User, {
-    foreignKey: 'user_id'
-});
-
-Comment.belongsTo(User, {
-    foreignKey: 'recipient_id'
-});
+/*Comment.belongsTo(User, {
+    foreignKey: 'recipient_id',
+    as: 'receiver'
+});*/
 
 User.belongsToMany(User, {
     as: 'voter', 

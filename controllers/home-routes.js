@@ -53,4 +53,30 @@ router.get('/profile/:id', async (req, res) => {
 }
 });
 
+router.get('/myprofile/:id', async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.id, {
+        include: [
+            {
+                model: Comment, 
+                attributes: ['comment_text', 'author_id', 'createdAt'],
+                include: [
+                  {
+                    model: User,
+                    attributes: ['name', 'image_url'],
+                    as: 'author'
+                  }
+                ]
+            }
+        ]
+    });
+    const profile = user.get({ plain: true });
+    console.log(profile);
+    res.render('profile', { profile });
+} catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+}
+});
+
 module.exports = router;
