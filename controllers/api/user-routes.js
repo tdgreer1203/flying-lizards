@@ -4,10 +4,15 @@ const { User, Comment, Vote } = require('../../models');
 router.get('/', (req, res) => {
     User.findAll({
         attributes: ['id', 'name', 'image_url']
-    }).then(dbUserData => res.json(dbUserData)).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    }).then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+      
+          res.json(dbUserData);
+        });
+      })
 });
 
 router.get('/:id', async (req, res) => {
@@ -47,6 +52,34 @@ router.post('/', (req, res) => {
         res.status(500).json(err);
     });
 });
+
+router.post('/login', (req, res) => {
+    User.findOne({
+      where: {
+        email: req.body.email
+      }
+    }).then(dbUserData => {
+      if (!dbUserData) {
+        res.status(400).json({ message: 'No user matches with this email address!' });
+        return;
+      }
+  
+      const validPassword = dbUserData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res.status(400).json({ message: 'Your entered password is incorrect !' });
+        return;
+      }
+  
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+  
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+      });
+    });
+  });
 
 router.put('/:id', (req, res) => {
     User.update(req.body, {
