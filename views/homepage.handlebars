@@ -1,0 +1,14 @@
+<div>A test of the homepage!</div>
+<ul>
+    {{#each user as |user|}}
+    <li>
+        <div class="title">
+            <a href="#">{{user.name}}</a>
+        </div>
+        <div class="user-info">
+            {{user.name}} is a {{user.breed}} who is {{user.age}} years old.
+            {{user.profile}}
+        </div>
+    </li>
+    {{/each}}
+</ul>
