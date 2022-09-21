@@ -1,0 +1,98 @@
+const { User } = require('../models');
+
+const userData = [
+    {
+        name: 'Joel',
+        breed: 'Airedale Terrier',
+        age: '12',
+        username: 'jterrier',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/02165956/Airedale-Terrier-standing-stacked-outdoors.jpg',
+    },
+    {
+        name: 'Musa',
+        breed: 'Cocker Spaniel',
+        age: '8',
+        username: 'cockermusa',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://www.akc.org/wp-content/uploads/2017/11/English-Cocker-Spaniel-Slide03.jpg',
+    },
+    {
+        name: 'Ebony',
+        breed: 'Akita',
+        age: '11',
+        username: 'ebonita',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/06154034/Akita-standing-outdoors-in-the-summer.jpg',
+    },
+    {
+        name: 'Ivan (Jax)',
+        breed: 'Alaskan Klee Kai',
+        age: '4',
+        username: 'jaxkai',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2021/01/18151501/Alaskan-Klee-Kai-standing-in-the-snow-attached-to-a-harness1.jpg',
+    },
+    {
+        name: 'Kira',
+        breed: 'Afghan Hound',
+        age: '6',
+        username: 'kirathehound',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/02151216/Afghan-Hound-standing-in-a-garden.jpg',
+    },
+    {
+        name: 'Mitchell',
+        breed: 'American Bulldog',
+        age: '7',
+        username: 'americanmitchell',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://www.akc.org/wp-content/uploads/2020/01/American-Bulldog-standing-in-three-quarter-view.jpg',
+    },
+    {
+        name: 'Eugene (Gene)',
+        breed: 'American Foxhound',
+        age: '7',
+        username: 'genie',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://www.akc.org/wp-content/uploads/2020/05/american-foxhound-pair-looking-up.jpg',
+    },
+    {
+        name: 'Niall',
+        breed: 'Hairless Terrier',
+        age: '9',
+        username: 'nialless',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://www.akc.org/wp-content/uploads/2017/11/American-Hairless-Terrier-standing-in-the-grass-on-lead.jpg',
+    },
+    {
+        name: 'Sarah',
+        breed: 'Eskimo Dog',
+        age: '5',
+        username: 'sarahskimo',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12153852/American-Eskimo-Dog-standing-in-the-grass-in-bright-sunlight.jpg',
+    },
+    {
+        name: 'Frederick (Fritz)',
+        breed: 'Alaskan Malamute',
+        age: '7',
+        username: 'fritzzy',
+        password: 'Password1',
+        profile: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+        image_url: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/09151144/Alaskan-Malamute-standing-in-the-grass1.jpg',
+    },
+];
+
+const seedUsers = () => User.bulkCreate(userData);
+
+module.exports = seedUsers;
