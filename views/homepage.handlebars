@@ -1,14 +1,13 @@
-<div>A test of the homepage!</div>
-<ul>
-    {{#each user as |user|}}
-    <li>
-        <div class="title">
-            <a href="#">{{user.name}}</a>
+<div class="row">
+    {{#each users}}
+    <div class="card" style="width: 20rem;">
+        <img src="{{image_url}}" >
+        <div class="card-body">
+            <h5 class="card-title">{{name}}</h5>
+            <p class="card-text"><strong>Breed:</strong> {{breed}}</p>
+            <p class="card-text">Age: {{age}}</p>
+            <a href="/profile/{{id}}" class="btn btn-primary">View Profile</a>
         </div>
-        <div class="user-info">
-            {{user.name}} is a {{user.breed}} who is {{user.age}} years old.
-            {{user.profile}}
-        </div>
-    </li>
+    </div>
     {{/each}}
-</ul>
+</div>
