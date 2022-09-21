@@ -1,14 +1,15 @@
-<div>A test of the homepage!</div>
+<div>A test of the homepage!
 <ul>
-    {{#each user as |user|}}
+    {{#each users}}
     <li>
         <div class="title">
-            <a href="#">{{user.name}}</a>
+            <a href="#">{{id}}{{name}}</a>
         </div>
         <div class="user-info">
-            {{user.name}} is a {{user.breed}} who is {{user.age}} years old.
-            {{user.profile}}
+            {{name}} is a {{breed}} who is {{age}} years old.
+            {{profile}}
         </div>
     </li>
     {{/each}}
 </ul>
+</div>

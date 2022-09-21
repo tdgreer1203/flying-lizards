@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
   })
   .then(dbUserData => {
     const users = dbUserData.map(user => user.get({ plain: true }));
-
+    console.log(users)
     res.render('homepage', { users });
   })
   .catch(err => {
@@ -25,6 +25,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+  res.render('login');
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
   res.render('login');
 });
 
