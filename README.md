@@ -9,15 +9,16 @@ The purpose here was to collaboratively create a front end webiste that uses a m
 * JavaScript 
 * Bootstrap
 * MySQL
-* Seq
+* Sequelize
 * Node.js
 * Express.js
 
 ## Website 
+[!screenshot of website](./public/img/the-dog-park.jpg)
 
 
 ## Screentshot of website
-
+https://the-dog-park-flying-lizards.herokuapp.com/
 
 ## Made by
 * Joseph Wright
