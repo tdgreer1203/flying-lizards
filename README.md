@@ -14,7 +14,7 @@ The purpose here was to collaboratively create a front end webiste that uses a m
 * Express.js
 
 ## Website 
-[!screenshot of website](./public/img/the-dog-park.jpg)
+![screenshot of website](./public/img/the-dog-park.jpg)
 
 
 ## Screentshot of website
