@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
   })
   .then(dbUserData => {
     const users = dbUserData.map(user => user.get({ plain: true }));
-    console.log(users)
     res.render('homepage', { users });
   })
   .catch(err => {
@@ -43,17 +42,19 @@ router.get('/profile/:id', async (req, res) => {
         include: [
             {
                 model: Comment, 
-                attributes: ['comment_text', 'author_id']
-            },
-            {
-                model: User,
-                attributes: ['name', 'image_url'],
-                through: Vote,
-                as: 'recipient'
+                attributes: ['comment_text', 'author_id', 'createdAt'],
+                order: [['createdAt', 'DESC']],
+                include: [
+                  { 
+                    model: User,
+                    as: 'user'
+                  }
+                ]
             }
         ]
     });
     const profile = user.get({ plain: true });
+    console.log(profile);
     res.render('profile', { profile });
 } catch (err) {
     console.log(err);
