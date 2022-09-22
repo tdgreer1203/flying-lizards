@@ -96,3 +96,11 @@ Body {
      }
 
     }
+
+    footer {
+      background-color: black;
+      color: white;
+      font-weight: bold;
+      padding-top: 25px;
+      padding-bottom: 15px;
+    }
