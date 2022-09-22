@@ -54,14 +54,4 @@ router.get('/profile/:id', async (req, res) => {
 }
 });
 
-router.get('/userscroll', (req, res) => {
-  User.findAll({
-    attributes: ['id', 'name', 'image_url', 'age']
-}).then(dbUserData => {
-  const users = dbUserData.map(user => user.get({ plain: true }));
-  console.log(users);
-  res.render('userscroll', { users });
-  });
-});
-
 module.exports = router;
