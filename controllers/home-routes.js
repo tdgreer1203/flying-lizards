@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Comment, Vote } = require('../models');
+const { QueryTypes } = require('sequelize');
 
 router.get('/', (req, res) => {
   User.findAll({
@@ -15,17 +16,12 @@ router.get('/', (req, res) => {
   })
   .then(dbUserData => {
     const users = dbUserData.map(user => user.get({ plain: true }));
-    console.log(users)
     res.render('homepage', { users });
   })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
-});
-
-router.get('/login', (req, res) => {
-  res.render('login');
 });
 
 router.get('/login', (req, res) => {
@@ -40,21 +36,15 @@ router.get('/login', (req, res) => {
 router.get('/profile/:id', async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id, {
-        include: [
-            {
-                model: Comment, 
-                attributes: ['comment_text', 'author_id']
-            },
-            {
-                model: User,
-                attributes: ['name', 'image_url'],
-                through: Vote,
-                as: 'recipient'
-            }
-        ]
+      attributes: { exclude: ['password'] }
     });
+    const comments = await sequelize.query(`SELECT comment.author_id, comment_text, username, image_url, created_at FROM comment LEFT JOIN user ON comment.author_id = user.id WHERE recipient_id = ? ORDER BY created_at DESC`, {
+      replacements: [req.params.id],
+      type: QueryTypes.SELECT
+    }); 
+    console.log(comments);
     const profile = user.get({ plain: true });
-    res.render('profile', { profile });
+    res.render('profile', { profile, comments });
 } catch (err) {
     console.log(err);
     res.status(500).json(err);

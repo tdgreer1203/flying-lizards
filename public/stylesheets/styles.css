@@ -1,0 +1,98 @@
+Body {  
+   font-family: Calibri, Helvetica, sans-serif;  
+   background-color: pink;  
+ }  
+ button {   
+        background-color: #4CAF50;   
+        width: 100%;  
+         color: orange;   
+         padding: 15px;   
+         margin: 10px 0px;   
+         border: none;   
+         cursor: pointer;   
+          }   
+  form {   
+         border: 3px solid #f1f1f1;   
+     }   
+  input[type=text], input[type=password] {   
+         width: 100%;   
+         margin: 8px 0;  
+         padding: 12px 20px;   
+         display: inline-block;   
+         border: 2px solid green;   
+         box-sizing: border-box;   
+     }  
+  button:hover {   
+         opacity: 0.7;   
+     }   
+   .cancelbtn {   
+         width: auto;   
+         padding: 10px 18px;  
+         margin: 10px 5px;  
+     }   
+         
+      
+  .container {   
+         padding: 25px;   
+         background-color: lightblue;  
+     }  
+
+     .card {
+       margin-left: 20px;
+       margin-bottom: 25px;
+    }
+   
+    .profile-image {
+       float: left;
+       max-width: 50%;
+       margin-right: 20px;
+    }
+   
+    .age {
+       font-weight: normal;
+    }
+   
+    .breed {
+       font-weight: bold;
+       font-family:Arial, Helvetica, sans-serif;
+       margin: 15px 0px;
+       font-size: 24px;
+    }
+   
+    .profile {
+       text-align: justify;
+    }
+   
+    .site-logo {
+       margin-bottom: 25px;
+    }
+
+    .messages-title {
+       display: block;
+       margin-top: 60px;
+    }
+
+    .comment-image {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .comment-form {
+     border: none;
+     max-width: 50%;
+    }
+
+    @media only screen and (max-width: 768px) {
+     .comment-image {
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .comment-form {
+     border: none;
+     max-width: 100%;
+    }
+
+   }
