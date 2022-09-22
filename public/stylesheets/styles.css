@@ -36,3 +36,33 @@ Body {
           padding: 25px;   
           background-color: lightblue;  
       }  
+
+      .card {
+        margin-left: 20px;
+        margin-bottom: 25px;
+     }
+    
+     .profile-image {
+        float: left;
+        max-width: 50%;
+        margin-right: 20px;
+     }
+    
+     .age {
+        font-weight: normal;
+     }
+    
+     .breed {
+        font-weight: bold;
+        font-family:Arial, Helvetica, sans-serif;
+        margin: 15px 0px;
+        font-size: 24px;
+     }
+    
+     .profile {
+        text-align: justify;
+     }
+    
+     .site-logo {
+        margin-bottom: 25px;
+     }
