@@ -47,13 +47,21 @@ router.get('/profile/:id', async (req, res) => {
       type: QueryTypes.SELECT
     }); 
     const profile = user.get({ plain: true });
-    console.log(profile);
-    console.log(comments);
     res.render('profile', { profile, comments });
 } catch (err) {
     console.log(err);
     res.status(500).json(err);
 }
+});
+
+router.get('/userscroll', (req, res) => {
+  User.findAll({
+    attributes: ['id', 'name', 'image_url', 'age']
+}).then(dbUserData => {
+  const users = dbUserData.map(user => user.get({ plain: true }));
+  console.log(users);
+  res.render('userscroll', { users });
+  });
 });
 
 module.exports = router;
