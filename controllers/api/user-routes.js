@@ -4,10 +4,15 @@ const { User, Comment, Vote } = require('../../models');
 router.get('/', (req, res) => {
     User.findAll({
         attributes: ['id', 'name', 'image_url']
-    }).then(dbUserData => res.json(dbUserData)).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+    }).then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+
+          res.json(dbUserData);
+        });
+      })
 });
 
 router.get('/:id', async (req, res) => {
