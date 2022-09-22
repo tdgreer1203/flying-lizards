@@ -3,7 +3,30 @@
 <div class="breed">{{profile.breed}}</div>
 <div class="profile">{{profile.profile}}</div>
 <h2 class="messages-title">Comments</h2>
-{{#each profile.comments}}
-<div class="comments"><p>{{comment_text}}</p></div>
+{{#each comments}}
+<div class="comments">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{{image_url}}" class="rounded-circle comment-image" >
+        </div>
+        <div class="col-md-10">
+            <p>{{comment_text}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-2">
+        </div>
+        <div class="col-md-12 col-lg-10">
+            <p>- <a href="/profile/{{author_id}}"><strong>{{username}}</strong></a></p>
+        </div>
+    </div>
+</div>
 <hr>
 {{/each}}
+<form class="comment-form">
+  <div class="form-group">
+    <label for="commentText"><strong>Leave {{profile.name}} a message!</strong></label>
+    <textarea class="form-control" id="commentText" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
